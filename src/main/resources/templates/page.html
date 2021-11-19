@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Database Interactions</title>
+</head>
+<body>
+    <h1>Database Page</h1>
+            <fieldset>
+                <legend>Please type in a new champion.</legend>
+            </fieldset>
+            <label for="championName">Champion Name</label>
+            <input type="text" id = "championName" name="championName"/>
+            <label for="championHatred">Champion Hatred</label>
+            <input type="text" id = "championHatred" name="championHatred"/>
+            <div class="submit-actions">
+                <button type="submit" class ="btn" id ="post-champ">Post Champion</button>
+            </div>
+
+        <script type="text/javascript">
+            document.getElementById("post-champ").onclick = function () {
+                championName = document.getElementById("championName").value
+                championHatred = document.getElementById("championHatred").value
+
+                location.href = "http://localhost:8080/champions/" + championName + "/" + championHatred.toString()
+            };
+        </script>
+
+</body>
+</html>
