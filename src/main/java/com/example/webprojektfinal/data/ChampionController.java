@@ -27,7 +27,7 @@ public class ChampionController {
         champions.add(new Champion("Queen", -2000));
         champions.add(new Champion("Caster Minion", 5));
         champions.add(new Champion("Blitzcrank", 5555));
-        champions.add(new Champion("Vex", 0));
+        champions.add(new Champion("Vex", -1));
         repository.saveAll(champions);
         return champions;
     }
@@ -50,13 +50,14 @@ public class ChampionController {
     @GetMapping("/champions/{name}")
     Champion findChampion(@PathVariable String name) {
         return repository
-                .findById(name)
+                .findByName(name)
                 .orElseThrow(() -> new ChampionNotFoundException(name));
     }
 
-    @PutMapping("/champions/{name}")
-    Champion saveOrUpdate(@RequestBody Champion madeChampion, @PathVariable String name){
-        return repository.findById(name)
+    @GetMapping("/championsput/{name}/{value}")
+    Champion saveOrUpdate(@PathVariable String name, @PathVariable Integer value){
+        Champion madeChampion = new Champion(name, value);
+        return repository.findByName(name)
                 .map(champion -> {
                     champion.setName(name);
                     champion.setHatred(madeChampion.getHatred());
@@ -68,8 +69,8 @@ public class ChampionController {
                 });
     }
 
-    @DeleteMapping("/champions/{name}")
-    void deleteChampion(@PathVariable Long name) {
-        repository.deleteById(name);
+    @GetMapping("/delete/{name}")
+    void deleteChampion(@PathVariable String name) {
+        repository.deleteByName(name);
     }
 }

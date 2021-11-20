@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Database Interactions</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <h1>Database Page</h1>
@@ -16,6 +17,9 @@
             <div class="submit-actions">
                 <button type="submit" class ="btn" id ="post-champ">Post Champion</button>
             </div>
+        <div class="delete-actions">
+            <button type="submit" class ="btn" id ="delete-champ">Delete Champion</button>
+        </div>
 
         <script type="text/javascript">
             document.getElementById("post-champ").onclick = function () {
@@ -25,6 +29,14 @@
                 location.href = "http://localhost:8080/champions/" + championName + "/" + championHatred.toString()
             };
         </script>
+        <script type="text/javascript">
+            document.getElementById("delete-champ").onclick = function () {
+                const element = document.querySelector('#delete-request .status');
+                const deleteUrl = "http://localhost:8080/delete/" + document.getElementById("championName").value
+                axios.delete(deleteUrl);
+            }
+        </script>
+
 
 </body>
 </html>
