@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class ChampionController {
 
@@ -22,7 +23,7 @@ public class ChampionController {
     @GetMapping("/example/fill")
     List<Champion> exampleFill(){
         List<Champion> champions= new ArrayList<>();
-        champions.add(new Champion("Master Jóska", 11));
+        champions.add(new Champion("MasterJóska", 11));
         champions.add(new Champion("Volibeááá", 4));
         champions.add(new Champion("Queen", -2000));
         champions.add(new Champion("Caster Minion", 5));
@@ -37,12 +38,13 @@ public class ChampionController {
         return new Champion("Aphelios", 10);
     }
 
+    @CrossOrigin
     @GetMapping("/champions")
     List<Champion> findAll() {
         return repository.findAll();
     }
 
-    @GetMapping("/champions/{championName}/{hatredValue}")
+    @PostMapping("/champions/{championName}/{hatredValue}")
     Champion newChampion(@PathVariable String championName, @PathVariable Integer hatredValue) {
         return repository.save(new Champion(championName, hatredValue));
     }
@@ -54,22 +56,7 @@ public class ChampionController {
                 .orElseThrow(() -> new ChampionNotFoundException(name));
     }
 
-    @GetMapping("/championsput/{name}/{value}")
-    Champion saveOrUpdate(@PathVariable String name, @PathVariable Integer value){
-        Champion madeChampion = new Champion(name, value);
-        return repository.findByName(name)
-                .map(champion -> {
-                    champion.setName(name);
-                    champion.setHatred(madeChampion.getHatred());
-                    return repository.save(champion);
-                })
-                .orElseGet(() -> {
-                    madeChampion.setName(name);
-                    return repository.save(madeChampion);
-                });
-    }
-
-    @GetMapping("/delete/{name}")
+    @DeleteMapping("/delete/{name}")
     void deleteChampion(@PathVariable String name) {
         repository.deleteByName(name);
     }
