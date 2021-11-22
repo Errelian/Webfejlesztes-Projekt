@@ -26,7 +26,7 @@ public class ChampionController {
         champions.add(new Champion("MasterJóska", 11));
         champions.add(new Champion("Volibeááá", 4));
         champions.add(new Champion("Queen", -2000));
-        champions.add(new Champion("Caster Minion", 5));
+        champions.add(new Champion("CasterMinion", 5));
         champions.add(new Champion("Blitzcrank", 5555));
         champions.add(new Champion("Vex", -1));
         repository.saveAll(champions);
