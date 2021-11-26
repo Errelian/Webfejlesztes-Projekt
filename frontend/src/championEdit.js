@@ -68,8 +68,8 @@ class ChampionEdit extends Component {
                                onChange={this.handleChange} autoComplete="hatred"/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
-                        <Button color="secondary" tag={Link} to="/championsdisp">Cancel</Button>
+                        <Button color="aqua" type="submit">Save</Button>{' '}
+                        <Button color="danger" tag={Link} to="/championsdisp">Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>

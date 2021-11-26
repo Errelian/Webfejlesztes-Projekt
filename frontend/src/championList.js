@@ -43,7 +43,7 @@ class ChampionList extends Component {
                 <td>{champion.hatred}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/championsdisp/" + champion.name}>Edit</Button>
+                        <Button size="sm" color="brown" tag={Link} to={"/championsdisp/" + champion.name}>Edit</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(champion.name)}>Delete</Button>
                     </ButtonGroup>
                 </td>
@@ -55,14 +55,14 @@ class ChampionList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-right">
-                        <Button color="success" tag={Link} to="/championsdisp/new">Add Champion</Button>
+                        <Button color="aqua" tag={Link} to="/championsdisp/new">Add Champion</Button>
                     </div>
                     <h3>Champions</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
                             <th width="30%">Name</th>
-                            <th width="30%">Hatred</th>
+                            <th width="20%">Hatred</th>
                             <th width="40%">Actions</th>
                         </tr>
                         </thead>
