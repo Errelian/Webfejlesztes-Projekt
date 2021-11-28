@@ -30,11 +30,13 @@ public class ChampionController {
         champions.add(new Champion("Blitzcrank", 5555));
         champions.add(new Champion("Vex", -1));
         repository.saveAll(champions);
+        logger.info("Example array saved.");
         return champions;
     }
 
     @GetMapping("/example")
     Champion example(){
+        logger.info("Example champion returned.");
         return new Champion("Aphelios", 10);
     }
 
@@ -58,6 +60,7 @@ public class ChampionController {
 
     @DeleteMapping("/delete/{name}")
     void deleteChampion(@PathVariable String name) {
+        logger.info("Champion delete is starting.");
         repository.deleteByName(name);
     }
 }
